@@ -172,7 +172,8 @@ class TestJobSpyScraper:
         """Test JobSpy scraper initialization."""
         scraper = JobSpyScraper()
         assert scraper.name == "jobspy"
-        assert len(scraper.SUPPORTED_SITES) == 5
+        # Note: Only 3 sites supported in JobSpy v1.1.13 (glassdoor & google removed due to API issues)
+        assert len(scraper.SUPPORTED_SITES) == 3
 
     @patch('scrapers.jobspy_scraper.scrape_jobs')
     def test_scrape_success(self, mock_scrape_jobs, sample_preferences):

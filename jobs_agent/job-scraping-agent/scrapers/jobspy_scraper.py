@@ -12,7 +12,10 @@ class JobSpyScraper:
     Supports: Indeed, LinkedIn, ZipRecruiter, Glassdoor, Google
     """
     
-    SUPPORTED_SITES = ["indeed", "linkedin", "zip_recruiter", "glassdoor", "google"]
+    # Note: Only these sites are supported in JobSpy v1.1.13
+    # Glassdoor and Google removed due to API issues
+    # Reference: https://github.com/Credence-Technologies/python-jobspy
+    SUPPORTED_SITES = ["indeed", "linkedin", "zip_recruiter"]
     
     def __init__(self):
         self.name = "jobspy"
@@ -31,6 +34,8 @@ class JobSpyScraper:
         """
         try:
             # JobSpy scrape
+            # Reference: https://github.com/Credence-Technologies/python-jobspy
+            # Note: hours_old not supported in v1.1.13, using default time filtering
             jobs_df = scrape_jobs(
                 site_name=self.SUPPORTED_SITES,  # Search all sites
                 search_term=query,
@@ -39,7 +44,6 @@ class JobSpyScraper:
                 is_remote=is_remote,
                 results_wanted=results_wanted,
                 country_indeed=country
-                # Note: hours_old parameter removed - not supported in latest jobspy version
             )
             
             if jobs_df is None or jobs_df.empty:
@@ -57,7 +61,14 @@ class JobSpyScraper:
             return jobs
             
         except Exception as e:
-            print(f"✗ JobSpy error for '{query}': {e}")
+            error_msg = str(e)
+            # Common JobSpy errors
+            if '403' in error_msg or 'blocked' in error_msg.lower():
+                print(f"⚠️  JobSpy blocked for '{query}' (anti-bot protection). Use Apify instead.")
+            elif 'GLASSDOOR' in error_msg or 'GOOGLE' in error_msg:
+                print(f"⚠️  JobSpy site not supported: {error_msg}")
+            else:
+                print(f"✗ JobSpy error for '{query}': {e}")
             return []
     
     def _df_row_to_job(self, row: pd.Series) -> Job:
