@@ -1,4 +1,4 @@
-# tests/test_agents.py
+# tests/test_agent.py
 
 import asyncio
 import pytest
@@ -9,7 +9,7 @@ from agents.code_fixer       import CodeFixerAgent
 from agents.code_reviewer    import CodeReviewerAgent
 from agents.security_scanner import SecurityScannerAgent
 from agents.test_writer      import TestWriterAgent
-from core.memory             import SharedMemory
+from tests.conftest import make_agent
 
 
 # ──────────────────────────────────────────────────────────────
@@ -60,14 +60,6 @@ def sample_fixes():
         }
     }
 
-
-def make_agent(cls):
-    """Create an agent with mocked dependencies."""
-    agent         = cls()
-    agent.memory  = AsyncMock(spec=SharedMemory)
-    agent.ollama  = MagicMock()
-    agent.github  = MagicMock()
-    return agent
 
 
 # ──────────────────────────────────────────────────────────────
