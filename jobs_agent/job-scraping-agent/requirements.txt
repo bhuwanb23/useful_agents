@@ -1,0 +1,25 @@
+# requirements.txt
+# AI & LLM
+openai>=1.0.0              # or use free alternatives
+google-generativeai        # Gemini (FREE!)
+langchain>=0.1.0
+langchain-community
+
+# Job Scraping
+python-jobspy              # JobSpy - FREE
+apify-client              # Apify - has free tier
+playwright                # Browser automation
+beautifulsoup4            # HTML parsing
+lxml
+
+# Data Processing
+pandas
+sqlalchemy
+pydantic
+python-dotenv
+
+# Utilities
+requests
+aiohttp                   # Async HTTP
+tenacity                  # Retry logic
+tqdm                      # Progress bars
