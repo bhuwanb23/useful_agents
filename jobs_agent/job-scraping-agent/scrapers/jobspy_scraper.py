@@ -38,8 +38,8 @@ class JobSpyScraper:
                 distance=distance,
                 is_remote=is_remote,
                 results_wanted=results_wanted,
-                country_indeed=country,
-                hours_old=720  # Jobs from last 30 days
+                country_indeed=country
+                # Note: hours_old parameter removed - not supported in latest jobspy version
             )
             
             if jobs_df is None or jobs_df.empty:

@@ -38,8 +38,16 @@ async def main():
     
     # Step 2: AI Analysis
     print("\n🧠 Step 2: Analyzing resume with AI...")
-    analyzer = AIAnalyzer()
-    resume_analysis = analyzer.analyze_resume(resume_path)
+    
+    # Try AI first, fallback to rule-based if API quota exceeded
+    try:
+        analyzer = AIAnalyzer(use_ai=True)
+        resume_analysis = analyzer.analyze_resume(resume_path)
+    except Exception as e:
+        print(f"⚠️  AI not available ({str(e)[:80]}...)")
+        print("🔄 Switching to rule-based analysis...\n")
+        analyzer = AIAnalyzer(use_ai=False)
+        resume_analysis = analyzer.analyze_resume(resume_path)
     
     print(f"   ✓ Identified {len(resume_analysis.job_titles)} target job titles")
     print(f"   ✓ Extracted {len(resume_analysis.skills)} skills")

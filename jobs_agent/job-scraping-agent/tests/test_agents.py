@@ -31,7 +31,7 @@ class TestAIAnalyzer:
             analyzer = AIAnalyzer()
             
             mock_genai.configure.assert_called_once_with(api_key="test_key")
-            mock_genai.GenerativeModel.assert_called_once_with('gemini-1.5-flash')
+            mock_genai.GenerativeModel.assert_called_once_with('gemini-2.0-flash')
 
     @patch('agents.ai_analyzer.genai')
     def test_analyze_resume(self, mock_genai, sample_resume_content):
