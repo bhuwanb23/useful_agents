@@ -119,8 +119,11 @@ class TestAIAnalyzer:
             analyzer = AIAnalyzer()
             
             with patch('builtins.open', mock_open(read_data=sample_resume_content)):
-                with pytest.raises(Exception):
-                    analyzer.analyze_resume("data/resume.md")
+                # Now the analyzer falls back to rule-based parsing instead of raising exception
+                result = analyzer.analyze_resume("data/resume.md")
+                # Should still return a valid ResumeAnalysis via fallback
+                assert result is not None
+                assert hasattr(result, 'job_titles')
 
     @patch('agents.ai_analyzer.genai')
     def test_generate_search_queries(self, mock_genai, sample_resume_analysis, sample_preferences):

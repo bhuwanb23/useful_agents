@@ -148,8 +148,47 @@ class CareerPageScraper:
         Scrape Lever-powered career pages
         Format: https://jobs.lever.co/company_name
         """
-        # Similar implementation to Greenhouse
-        pass
+        jobs = []
+        
+        try:
+            # Lever has a JSON API
+            company_name = self._extract_company_name(company_url)
+            api_url = f"https://api.lever.co/v0/postings/{company_name}?mode=json"
+            
+            response = requests.get(api_url, timeout=30)
+            response.raise_for_status()
+            
+            data = response.json()
+            
+            for job_data in data:
+                try:
+                    job_id = hashlib.md5(
+                        f"{job_data.get('hostedUrl', '')}".encode()
+                    ).hexdigest()[:16]
+                    
+                    location = job_data.get('categories', {}).get('location', '')
+                    
+                    job = Job(
+                        job_id=job_id,
+                        source="lever",
+                        title=job_data.get('text', 'Unknown'),
+                        company=company_name,
+                        location=location,
+                        is_remote='remote' in location.lower() if location else False,
+                        description=job_data.get('description', {}).get('content', ''),
+                        job_url=job_data.get('hostedUrl', company_url),
+                        scraped_at=datetime.now()
+                    )
+                    jobs.append(job)
+                except Exception as e:
+                    print(f"Error parsing Lever job: {e}")
+                    continue
+            
+        except Exception as e:
+            print(f"✗ Error scraping Lever {company_url}: {e}")
+        
+        print(f"✓ Lever found {len(jobs)} jobs")
+        return jobs
     
     async def scrape_workday(self, company_url: str) -> List[Job]:
         """
