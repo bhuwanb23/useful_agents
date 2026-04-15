@@ -1,6 +1,6 @@
 # agents/ai_analyzer.py
 import google.generativeai as genai
-from typing import Dict, Any
+from typing import Dict, Any, List
 import json
 from config.settings import settings
 from config.prompts import RESUME_ANALYSIS_PROMPT, QUERY_ENHANCEMENT_PROMPT
