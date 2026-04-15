@@ -11,7 +11,8 @@ class AIAnalyzer:
     def __init__(self):
         # Using FREE Gemini API
         genai.configure(api_key=settings.GOOGLE_API_KEY)
-        self.model = genai.GenerativeModel('gemini-pro')
+        # Using gemini-1.5-flash (free tier available)
+        self.model = genai.GenerativeModel('gemini-1.5-flash')
     
     def analyze_resume(self, resume_path: str) -> ResumeAnalysis:
         """
