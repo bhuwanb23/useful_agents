@@ -8,9 +8,18 @@ import tempfile
 import sqlite3
 from datetime import datetime
 
-# Add phase2-matching to path
-ROOT_DIR = Path(__file__).parent.parent
-sys.path.insert(0, str(ROOT_DIR))
+# CRITICAL: Add phase2-matching to path BEFORE any other imports
+CURRENT_DIR = Path(__file__).parent
+PHASE2_DIR = CURRENT_DIR.parent
+
+# Remove any existing phase2-matching paths to avoid duplicates
+sys.path = [p for p in sys.path if 'phase2-matching' not in p]
+
+# Add at the very beginning
+sys.path.insert(0, str(PHASE2_DIR))
+
+# Set PYTHONPATH environment variable
+os.environ['PYTHONPATH'] = str(PHASE2_DIR)
 
 @pytest.fixture
 def sample_resume_analysis():
@@ -174,17 +183,23 @@ def temp_jobs_db(sample_jobs):
 def temp_resume_file(sample_resume_analysis):
     """Create a temporary resume analysis JSON file."""
     with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
-        json.dump(sample_resume_analysis, f)
-        yield f.name
-    os.unlink(f.name)
+        json.dump(sample_resume_analysis, f, indent=2)
+        f.flush()  # Ensure data is written
+        temp_path = f.name
+    yield temp_path
+    if os.path.exists(temp_path):
+        os.unlink(temp_path)
 
 @pytest.fixture
 def temp_preferences_file(sample_preferences):
     """Create a temporary preferences JSON file."""
     with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
-        json.dump(sample_preferences, f)
-        yield f.name
-    os.unlink(f.name)
+        json.dump(sample_preferences, f, indent=2)
+        f.flush()  # Ensure data is written
+        temp_path = f.name
+    yield temp_path
+    if os.path.exists(temp_path):
+        os.unlink(temp_path)
 
 @pytest.fixture
 def sample_skill_text():

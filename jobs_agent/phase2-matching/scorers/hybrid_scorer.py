@@ -3,7 +3,7 @@ from typing import Dict, Any
 from .base_scorer import BaseScorer
 from .traditional_scorer import TraditionalScorer
 from .ai_scorer import AIScorer
-from models.scored_job import ScoreBreakdown
+from models.scored_jobs import ScoreBreakdown
 
 class HybridScorer(BaseScorer):
     """

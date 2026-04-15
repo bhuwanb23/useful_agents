@@ -2,7 +2,7 @@
 from typing import Dict, Any, List
 import google.generativeai as genai
 from .base_scorer import BaseScorer
-from models.scored_job import ScoreBreakdown
+from models.scored_jobs import ScoreBreakdown
 from config.prompts import (
     CULTURE_FIT_PROMPT,
     GROWTH_POTENTIAL_PROMPT,

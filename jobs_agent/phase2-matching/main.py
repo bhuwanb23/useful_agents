@@ -13,12 +13,16 @@ from datetime import datetime
 from tqdm import tqdm
 import argparse
 
-# Phase 1 imports
-from config.settings import settings as phase1_settings
+# Phase 1 imports (optional - only needed if using phase1 settings)
+try:
+    from config.settings import settings as phase1_settings
+except ImportError:
+    # Settings not available, will use environment variables directly
+    phase1_settings = None
 
 # Phase 2 imports
 from config.scoring_config import SCORING_CONFIG
-from models.scored_job import ScoredJob, ScoreBreakdown, MatchExplanation
+from models.scored_jobs import ScoredJob, ScoreBreakdown, MatchExplanation
 from scorers.hybrid_scorer import HybridScorer
 from utils.embedding_cache import EmbeddingCache
 from utils.explainer import MatchExplainer

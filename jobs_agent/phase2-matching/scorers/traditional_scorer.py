@@ -1,7 +1,7 @@
 # phase2-matching/scorers/traditional_scorer.py
 from typing import Dict, Any
 from .base_scorer import BaseScorer
-from models.scored_job import ScoreBreakdown
+from models.scored_jobs import ScoreBreakdown
 from matchers import (
     SkillMatcher,
     ExperienceMatcher,

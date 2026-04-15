@@ -1,7 +1,7 @@
 # phase2-matching/scorers/base_scorer.py
 from abc import ABC, abstractmethod
 from typing import Dict, Any
-from models.scored_job import ScoreBreakdown
+from models.scored_jobs import ScoreBreakdown
 
 class BaseScorer(ABC):
     """

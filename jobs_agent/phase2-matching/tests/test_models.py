@@ -1,6 +1,6 @@
 # phase2-matching/tests/test_models.py
 import pytest
-from models.scored_job import ScoredJob, ScoreBreakdown, MatchExplanation, MatchGrade
+from models.scored_jobs import ScoredJob, ScoreBreakdown, MatchExplanation, MatchGrade
 from datetime import datetime
 
 class TestScoreBreakdown:

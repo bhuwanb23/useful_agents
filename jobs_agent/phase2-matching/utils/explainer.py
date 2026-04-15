@@ -1,6 +1,6 @@
 # phase2-matching/utils/explainer.py
 from typing import Dict, List
-from models.scored_job import ScoreBreakdown, MatchExplanation
+from models.scored_jobs import ScoreBreakdown, MatchExplanation
 from config.scoring_config import GRADE_THRESHOLDS, RECOMMENDATIONS
 
 class MatchExplainer:
