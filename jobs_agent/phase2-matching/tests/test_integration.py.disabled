@@ -47,6 +47,8 @@ class TestJobMatchingSystem:
         temp_jobs_db
     ):
         """Test resume text creation."""
+        from main import JobMatchingSystem
+        
         system = JobMatchingSystem(
             resume_analysis_path=temp_resume_file,
             preferences_path=temp_preferences_file,
@@ -70,6 +72,8 @@ class TestJobMatchingSystem:
         temp_jobs_db
     ):
         """Test matching jobs with limit."""
+        from main import JobMatchingSystem
+        
         system = JobMatchingSystem(
             resume_analysis_path=temp_resume_file,
             preferences_path=temp_preferences_file,
@@ -94,6 +98,8 @@ class TestJobMatchingSystem:
         sample_jobs
     ):
         """Test matching all jobs."""
+        from main import JobMatchingSystem
+        
         system = JobMatchingSystem(
             resume_analysis_path=temp_resume_file,
             preferences_path=temp_preferences_file,
@@ -120,6 +126,8 @@ class TestJobMatchingSystem:
         sample_job
     ):
         """Test scoring a single job."""
+        from main import JobMatchingSystem
+        
         system = JobMatchingSystem(
             resume_analysis_path=temp_resume_file,
             preferences_path=temp_preferences_file,
@@ -147,6 +155,8 @@ class TestJobMatchingSystem:
         tmp_path
     ):
         """Test saving results to JSON file."""
+        from main import JobMatchingSystem
+        
         output_file = str(tmp_path / "test_results.json")
         
         system = JobMatchingSystem(
@@ -178,6 +188,8 @@ class TestJobMatchingSystem:
         temp_jobs_db
     ):
         """Test saving results to database."""
+        from main import JobMatchingSystem
+        
         system = JobMatchingSystem(
             resume_analysis_path=temp_resume_file,
             preferences_path=temp_preferences_file,
@@ -206,6 +218,8 @@ class TestJobMatchingSystem:
         capsys
     ):
         """Test printing summary (captures output)."""
+        from main import JobMatchingSystem
+        
         system = JobMatchingSystem(
             resume_analysis_path=temp_resume_file,
             preferences_path=temp_preferences_file,
@@ -228,6 +242,8 @@ class TestJobMatchingSystem:
         tmp_path
     ):
         """Test with empty database."""
+        from main import JobMatchingSystem
+        
         # Create empty database
         empty_db = str(tmp_path / "empty.db")
         conn = sqlite3.connect(empty_db)
@@ -269,6 +285,8 @@ class TestJobMatchingSystem:
         temp_jobs_db
     ):
         """Test that jobs below minimum score are filtered out."""
+        from main import JobMatchingSystem
+        
         system = JobMatchingSystem(
             resume_analysis_path=temp_resume_file,
             preferences_path=temp_preferences_file,
@@ -293,6 +311,8 @@ class TestJobMatchingSystem:
         temp_jobs_db
     ):
         """Test that system cleans up properly."""
+        from main import JobMatchingSystem
+        
         system = JobMatchingSystem(
             resume_analysis_path=temp_resume_file,
             preferences_path=temp_preferences_file,
