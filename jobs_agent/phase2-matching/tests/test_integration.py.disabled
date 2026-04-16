@@ -9,7 +9,7 @@ import sys
 # Add phase2-matching to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from main import JobMatchingSystem
+# Import config directly (not from main.py to avoid phase1 imports)
 from config.scoring_config import SCORING_CONFIG
 
 class TestJobMatchingSystem:
@@ -22,6 +22,9 @@ class TestJobMatchingSystem:
         temp_jobs_db
     ):
         """Test system initialization."""
+        # Import here to avoid circular imports
+        from main import JobMatchingSystem
+        
         system = JobMatchingSystem(
             resume_analysis_path=temp_resume_file,
             preferences_path=temp_preferences_file,
