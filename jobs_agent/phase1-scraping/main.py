@@ -53,6 +53,13 @@ async def main():
     print(f"   ✓ Extracted {len(resume_analysis.skills)} skills")
     print(f"   ✓ Seniority level: {resume_analysis.seniority}")
     
+    # Save resume analysis for Phase 2
+    print("\n💾 Saving resume analysis for Phase 2...")
+    resume_analysis_dict = resume_analysis.model_dump()
+    with open("data/resume_analysis.json", "w") as f:
+        json.dump(resume_analysis_dict, f, indent=2, default=str)
+    print(f"   ✓ Saved to data/resume_analysis.json")
+    
     # Step 3: Generate search queries
     print("\n🔎 Step 3: Generating search queries...")
     search_queries = analyzer.generate_search_queries(resume_analysis, preferences)
