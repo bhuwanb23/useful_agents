@@ -3,8 +3,13 @@ import sys
 import os
 from pathlib import Path
 
-# Add parent directory to path to import from phase1
-sys.path.insert(0, str(Path(__file__).parent.parent / 'phase1-scraping'))
+# Add phase2-matching to path FIRST (before phase1)
+CURRENT_DIR = Path(__file__).parent
+if str(CURRENT_DIR) not in sys.path:
+    sys.path.insert(0, str(CURRENT_DIR))
+
+# Add parent directory to path to import from phase1 (AFTER phase2)
+sys.path.insert(1, str(Path(__file__).parent.parent / 'phase1-scraping'))
 
 import sqlite3
 from typing import List, Dict, Any
