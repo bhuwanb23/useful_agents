@@ -1,0 +1,10 @@
+# Corporate Proxy Configuration for git
+# Run: git config --global --add include.path /path/to/.gitconfig.proxy
+
+[http]
+    proxy = http://proxy.company.com:8080
+    sslVerify = false
+    
+[https]
+    proxy = http://proxy.company.com:8080
+    sslVerify = false

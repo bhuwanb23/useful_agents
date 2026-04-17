@@ -1,0 +1,18 @@
+# Corporate Proxy Configuration for npm
+# Copy this to .npmrc or merge with existing .npmrc
+
+# Proxy settings (update with your actual proxy)
+proxy=http://proxy.company.com:8080
+https-proxy=http://proxy.company.com:8080
+
+# SSL settings for corporate environment
+strict-ssl=false
+registry=http://registry.npmjs.org/
+
+# Certificate (uncomment and update path if you have corporate cert)
+# cafile=C:\\certs\\corp-root.pem
+
+# Timeout settings (increase for slow proxy)
+fetch-timeout=300000
+fetch-retry-mintimeout=20000
+fetch-retry-maxtimeout=120000
