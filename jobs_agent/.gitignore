@@ -60,3 +60,4 @@ playwright/.cache/
 *.db
 *.sqlite
 *.pkl
+*.json
