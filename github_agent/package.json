@@ -1,0 +1,63 @@
+{
+  "name": "react-vite-tailwind",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "dev:server": "tsx watch server/index.ts",
+    "build:server": "tsc -p tsconfig.server.json",
+    "start:server": "node dist/server/index.js",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "dependencies": {
+    "@octokit/rest": "^22.0.1",
+    "@prisma/client": "^5.22.0",
+    "axios": "^1.7.7",
+    "bullmq": "^5.14.0",
+    "chromadb": "^1.9.2",
+    "clsx": "2.1.1",
+    "cors": "^2.8.5",
+    "dockerode": "^4.0.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "glob": "^11.0.0",
+    "ioredis": "^5.4.1",
+    "prisma": "^5.22.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tailwind-merge": "3.4.0",
+    "tiktoken": "^1.0.17",
+    "tsx": "^4.19.1",
+    "uuid": "^10.0.0",
+    "zod": "^3.23.8"
+  },
+  "overrides": {
+    "chromadb": {
+      "openai": "^4.63.0"
+    }
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.1.17",
+    "@types/cors": "^2.8.17",
+    "@types/dockerode": "^3.3.31",
+    "@types/express": "^4.17.21",
+    "@types/node": "22.19.17",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@types/uuid": "^10.0.0",
+    "@vitejs/plugin-react": "5.1.1",
+    "tailwindcss": "4.1.17",
+    "typescript": "5.9.3",
+    "vite": "7.2.4",
+    "vite-plugin-singlefile": "2.3.0"
+  }
+}
