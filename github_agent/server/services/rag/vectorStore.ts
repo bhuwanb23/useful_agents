@@ -9,7 +9,8 @@ export class VectorStore {
   private readonly collectionName = 'code_embeddings';
 
   constructor() {
-    this.client = new ChromaClient({ path: config.chromaUrl });
+    // Configured for local file-based storage
+    this.client = new ChromaClient({ path: "./chroma_db" });
   }
 
   async initialize(): Promise<void> {
